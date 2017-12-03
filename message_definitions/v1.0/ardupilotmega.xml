@@ -1397,6 +1397,7 @@
       <field type="uint8_t" name="status" enum="GOPRO_REQUEST_STATUS">Status</field>
     </message>
     <!-- 219 to 224 RESERVED for more GOPRO-->
+    <!-- 220, 224 and 229 used in icarous.xml-->
     <message id="226" name="RPM">
       <description>RPM sensor output</description>
       <field type="float" name="rpm1">RPM Sensor1</field>
