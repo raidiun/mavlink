@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<mavlink>
+  <!-- Message definitions from the University of Bristol Flight lab -->
+  <!-- bristol.ac.uk/aerodynamics-research/research-projects/bif/    -->
+  <!-- mavlink ID range: 15000 - 15099                               -->
+  <enums>
+      <enum name="TRAJECTORY_RESPONSE">
+        <description>Response codes for TRAJECTORY_ACK</description>
+        <entry name="TRAJECTORY_ACCEPTED">
+          <description>Trajectory accepted OK</description>
+        </entry>
+        <entry name="TRAJECTORY_ERROR">
+          <description>Error in trajectory transfer</description>
+        </entry>
+    </enum>
+  </enums>
+  <messages>
+    <message id="15000" name="TRAJECTORY_ITEM">
+      <description>Message encoding a trajectory item. This message is emitted to announce the presence of a trajectory item and to set a trajectory item on the system. </description>
+      <field type="uint8_t" name="target_system">System ID</field>
+      <field type="uint8_t" name="target_component">Component ID</field>
+      <field type="uint16_t" name="seq">Sequence</field>
+      <field type="uint16_t" name="time_ms">Time MS</field>
+      <field type="uint16_t" name="elevator">Elevator (PWM)</field>
+      <field type="uint16_t" name="sweep">Sweep (PWM)</field>
+      <field type="int32_t" name="pitch">Pitch Angle (centi-degrees)</field>
+      <field type="int32_t" name="pitchrate">Pitch Rate (centi-degrees/s)</field>
+      <field type="float" name="airspeed">Airspeed (m/s)</field>
+      <field type="float" name="height">Height (m)</field>
+      <field type="float" name="distance">Distance (m)</field>
+    </message>
+    <message id="15001" name="TRAJECTORY_REQUEST_LIST">
+        <description>Request the overall list of trajectory items.</description>
+        <field type="uint8_t" name="target_system">System ID</field>
+        <field type="uint8_t" name="target_component">Component ID</field>
+    </message>
+    <message id="15002" name="TRAJECTORY_CLEAR_ALL">
+        <description>Clear the list of trajectory items</description>
+        <field type="uint8_t" name="target_system">System ID</field>
+        <field type="uint8_t" name="target_component">Component ID</field>
+    </message>
+    <message id="15003" name="TRAJECTORY_COUNT">
+        <description>Initiate trajectory write or get count of trajectory items in response to TRAJECTORY_REQUEST_LIST</description>
+        <field type="uint8_t" name="target_system">System ID</field>
+        <field type="uint8_t" name="target_component">Component ID</field>
+        <field type="uint16_t" name="count">Count</field>
+    </message>
+    <message id="15004" name="TRAJECTORY_REQUEST">
+        <description>Request the trajectory item with sequence number seq.</description>
+        <field type="uint8_t" name="target_system">System ID</field>
+        <field type="uint8_t" name="target_component">Component ID</field>
+        <field type="uint16_t" name="seq">Sequence</field>
+    </message>
+    <message id="15005" name="TRAJECTORY_ACK">
+        <description>ACK message used during trajectory item handling</description>
+        <field type="uint8_t" name="target_system">System ID</field>
+        <field type="uint8_t" name="target_component">Component ID</field>
+        <field type="uint8_t" name="response">Response (See TRAJECTORY_RESPONSE enum)</field>
+    </message>
+  </messages>
+</mavlink>
