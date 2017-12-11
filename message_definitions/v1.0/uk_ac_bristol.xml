@@ -13,6 +13,19 @@
           <description>Error in trajectory transfer</description>
         </entry>
     </enum>
+    <enum name="MAV_CMD">
+      <description>UoB Extensions to MAV_CMD. Commands to be executed by the MAV. They can be executed on user request, or as part of a mission script.</description>
+          <entry value="87" name="MAV_CMD_DO_TRAJECTORY">
+            <description>Land using VTOL mode</description>
+            <param index="1">Empty</param>
+            <param index="2">Empty</param>
+            <param index="3">Empty</param>
+            <param index="4">Empty</param>
+            <param index="5">Empty</param>
+            <param index="6">Empty</param>
+            <param index="7">Empty</param>
+          </entry>
+      </enum>
   </enums>
   <messages>
     <message id="15000" name="TRAJECTORY_ITEM">
