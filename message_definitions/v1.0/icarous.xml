@@ -1,36 +1,48 @@
 <?xml version="1.0"?>
 <mavlink>
+  <!-- ICAROUS message definitions                                     -->
+  <!-- https://github.com/nasa/icarous                                 -->
+  <!-- email contacts: Swee Balachandran: swee.balachandran@nianet.org -->
+  <!--                 Cesar Munoz: cesar.a.munoz@nasa.gov             -->
+  <!-- mavlink ID range 42000 - 42099                                  -->
 	<enums>
+	  <enum name="TRACK_BAND_TYPES">
+	    <entry name="NONE" value="0"/>
+	    <entry name="NEAR" value="1"/>
+	    <entry name="RECOVERY" value="2"/>
+	  </enum>
+	  <enum name="FMS_STATE">
+	    <entry name="IDLE" value="0"/>
+	    <entry name="TAKEOFF" value="1"/>
+	    <entry name="CLIMB" value="2"/>
+	    <entry name="CRUISE" value="3"/>
+	    <entry name="APPROACH" value="4"/>
+	    <entry name="LAND" value="5"/>
+	  </enum>
 	</enums>
 	<messages>
-	  <message id="220" name="KINEMATIC_BANDS">
+	  <message id="42000" name="HEARTBEAT_ICAROUS">
+	    <description>ICAROUS heartbeat</description>
+	    <field type="uint8_t" name="status" enum="FMS_STATE">See the FMS_STATE enum.</field>
+	  </message>
+	  <message id="42001" name="KINEMATIC_BANDS">
 	    <description>Kinematic multi bands (track) output from Daidalus</description>
 	    <field type="int8_t" name="numBands">Number of track bands</field>
-	    <field type="int8_t" name="type1">type of band (0 - None, 1-NEAR, ...)</field>
+	    <field type="uint8_t" name="type1" enum="TRACK_BAND_TYPES">See the TRACK_BAND_TYPES enum.</field>
 	    <field type="float" name="min1">min angle (degrees)</field>
 	    <field type="float" name="max1">max angle (degrees)</field> 
-	    <field type="int8_t" name="type2">type of band</field>
+	    <field type="uint8_t" name="type2" enum="TRACK_BAND_TYPES">See the TRACK_BAND_TYPES enum.</field>
 	    <field type="float" name="min2">min angle (degrees)</field>
 	    <field type="float" name="max2">max angle (degrees)</field>
-	    <field type="int8_t" name="type3">type of band</field>
+	    <field type="uint8_t" name="type3" enum="TRACK_BAND_TYPES">See the TRACK_BAND_TYPES enum.</field>
 	    <field type="float" name="min3">min angle (degrees)</field>
 	    <field type="float" name="max3">max angle (degrees)</field>
-	    <field type="int8_t" name="type4">type of band</field>
+	    <field type="uint8_t" name="type4" enum="TRACK_BAND_TYPES">See the TRACK_BAND_TYPES enum.</field>
 	    <field type="float" name="min4">min angle (degrees)</field>
 	    <field type="float" name="max4">max angle (degrees)</field>
-	    <field type="int8_t" name="type5">type of band</field>
+	    <field type="uint8_t" name="type5" enum="TRACK_BAND_TYPES">See the TRACK_BAND_TYPES enum.</field>
 	    <field type="float" name="min5">min angle (degrees)</field>
 	    <field type="float" name="max5">max angle (degrees)</field>
-	  </message>
-
-	  <message id="224" name="SAFEGUARD">
-	    <description>Safeguard input</description>
-	    <field type="int8_t" name="value">1-success,0-failure</field>
-	  </message>
-	  
-	  <message id="229" name="HEARTBEAT_ICAROUS">
-	    <description>ICAROUS heartbeat</description>
-	    <field type="int8_t" name="status">FMS state (0-idle, 1-Takeoff, 2-Climb, 3-Cruise, 4-Land)</field>
 	  </message>
 	</messages>
 </mavlink>
